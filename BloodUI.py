@@ -4,7 +4,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 
 # Load the trained model (Ensure the model is saved as 'blood_group_fingerprint_model.h5')
-model = load_model(r'C:\Users\Ramtej\Downloads\Blood Group Data (2)\Blood Group Data\blood_group_fingerprint_model.h5')
+model = load_model(r'blood_group_fingerprint_model.h5')
 
 # Define the blood group classes (ensure these match the classes the model was trained on)
 blood_group_classes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
