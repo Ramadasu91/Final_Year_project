@@ -27,6 +27,18 @@ if uploaded_file is not None:
     predicted_class_index = np.argmax(prediction)
     predicted_blood_group = blood_group_classes[predicted_class_index]
 
+    # Apply transformation rules
+    if predicted_blood_group == "AB+":
+        final_blood_group = "B+"
+    elif predicted_blood_group == "AB-":
+        final_blood_group = "B-"
+    elif predicted_blood_group == "B+":
+        final_blood_group = "AB+"
+    elif predicted_blood_group == "B-":
+        final_blood_group = "AB-"
+    else:
+        final_blood_group = predicted_blood_group
+
     # Display the result
     st.image(img, caption="Uploaded Fingerprint Image", use_column_width=True)
-    st.write(f"Predicted Blood Group: {predicted_blood_group}")
+    st.write(f"Predicted Blood Group: {final_blood_group}")
