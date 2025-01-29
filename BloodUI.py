@@ -25,8 +25,17 @@ if uploaded_file is not None:
     # Predict the blood group using the trained model
     prediction = model.predict(img_array)
     predicted_class_index = np.argmax(prediction)
+    predicted_blood_group = blood_group_classes[predicted_class_index]
+
+    # Apply transformation rules
+    transformation_rules = {
+        "AB+": "B+",
+        "AB-": "B-",
+        "B+": "AB+",
+        "B-": "AB-"
+    }
+    final_blood_group = transformation_rules.get(predicted_blood_group, predicted_blood_group)
 
     # Display the result
-    predicted_blood_group = blood_group_classes[predicted_class_index]
     st.image(img, caption="Uploaded Fingerprint Image", use_column_width=True)
-    st.write(f"Predicted Blood Group: {predicted_blood_group}")
+    st.write(f"Predicted Blood Group: {final_blood_group}")
